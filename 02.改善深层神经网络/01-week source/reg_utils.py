@@ -191,8 +191,8 @@ def load_2D_dataset(is_plot=True):
     test_X = data['Xval'].T
     test_Y = data['yval'].T
     if is_plot:
-        plt.scatter(train_X[0, :], train_X[1, :], c=train_Y, s=40, cmap=plt.cm.Spectral);
-    
+        # plt.scatter(train_X[0, :], train_X[1, :], c=train_Y, s=40, cmap=plt.cm.Spectral);
+        plt.scatter(train_X[0, :], train_X[1, :], c=np.squeeze(train_Y), s=40, cmap=plt.cm.Spectral);
     return train_X, train_Y, test_X, test_Y
 
 def predict(X, y, parameters):
@@ -239,9 +239,10 @@ def plot_decision_boundary(model, X, y):
     plt.contourf(xx, yy, Z, cmap=plt.cm.Spectral)
     plt.ylabel('x2')
     plt.xlabel('x1')
-    plt.scatter(X[0, :], X[1, :], c=y, cmap=plt.cm.Spectral)
+    # plt.scatter(X[0, :], X[1, :], c=y, cmap=plt.cm.Spectral)
+    plt.scatter(X[0, :], X[1, :], c=np.squeeze(y), cmap=plt.cm.Spectral)
     plt.show()
- 
+
 def predict_dec(parameters, X):
     """
     Used for plotting decision boundary.
@@ -258,4 +259,7 @@ def predict_dec(parameters, X):
     a3, cache = forward_propagation(X, parameters)
     predictions = (a3>0.5)
     return predictions
+
+
+
 
